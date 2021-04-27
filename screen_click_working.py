@@ -34,10 +34,6 @@ class TwitchChannel:
     # need a method to create and store object data for restarting program
 
 
-pest = TwitchChannel('pest', 30)
-collectionOfChannels.append(pest)
-
-
 def pointsButtonCheck():
     for filename in os.listdir(directory):
         if filename.endswith(".PNG"):
@@ -73,8 +69,6 @@ def clickPoints(location):
     pyautogui.moveTo(mouseLocation)
 
 
-for filename in os.listdir(directory):
-    print(filename)
 while True:
     location = pointsButtonCheck()
     print(location)
