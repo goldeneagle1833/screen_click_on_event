@@ -38,13 +38,11 @@ def pointsButtonCheck():
     for filename in os.listdir(directory):
         if filename.endswith(".PNG"):
             location = pyautogui.locateOnScreen(filename)
-            # print(location)
             return location
 
 
 def channelLogoLookUp():
     for filename in os.listdir(directory):
-     #       pyautogui.screenshot('my_screenshot.png')
         if "Logo" in filename:
             channel = pyautogui.locateOnScreen(filename)
         else:
