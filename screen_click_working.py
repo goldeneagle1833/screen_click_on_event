@@ -36,9 +36,11 @@ class TwitchChannel:
 
 def pointsButtonCheck():
     for filename in os.listdir(directory):
-        if filename.endswith(".PNG"):
+        if "PointBox" in filename:
+            print(filename)
             location = pyautogui.locateOnScreen(filename)
-            return location
+            if location != None:
+                return location
 
 
 def channelLogoLookUp():
