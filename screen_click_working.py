@@ -52,7 +52,7 @@ def channelLogoLookUp():
 
 def createChannelObj(name):
     if any(x.name == name for x in collectionOfChannels):
-        print(f'{name} already created')
+        print(f'{x.name} already created')
     else:
         name = TwitchChannel(name, 0)
         collectionOfChannels.append(name)
@@ -65,10 +65,11 @@ def clickPoints(location):
     pyautogui.moveTo(mouseLocation)
 
 
-def writingResults(name, points):
+def resultsLog():
     results = open("Results.txt", "a+")
-    results.write(f"\n{str(points)} {name} \n----------------")
-    results.close()
+    for x in collectionOfChannels:
+        results.write(f"\n{str(x.channelPoints)} {x.name}")
+    results.write("\n ---------------")
 
 
 while True:
@@ -77,7 +78,6 @@ while True:
         nameOfChannel = channelLogoLookUp()
         createChannelObj(nameOfChannel)
         for x in collectionOfChannels:
-            writingResults(x.name, x.channelPoints)
             if x.name == nameOfChannel:
                 x.addPoints()
                 print(x.channelPoints)
@@ -86,7 +86,6 @@ while True:
         print('i am waiting', randomTime)
         time.sleep(randomTime)
         clickPoints(location)
-
-        print(location)
+        resultsLog()
     else:
         print('None')
