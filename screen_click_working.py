@@ -14,10 +14,6 @@ start = time.time()
 collectionOfChannels = []
 
 
-def testFunction():
-    return 'bruce'
-
-
 class TwitchChannel:
     def __init__(self, name, channelPoints):
         self.channelPoints = channelPoints
@@ -69,13 +65,19 @@ def clickPoints(location):
     pyautogui.moveTo(mouseLocation)
 
 
+def writingResults(name, points):
+    results = open("Results.txt", "a+")
+    results.write(f"\n{str(points)} {name} \n----------------")
+    results.close()
+
+
 while True:
     location = pointsButtonCheck()
-    print(location)
     if location != None:
         nameOfChannel = channelLogoLookUp()
         createChannelObj(nameOfChannel)
         for x in collectionOfChannels:
+            writingResults(x.name, x.channelPoints)
             if x.name == nameOfChannel:
                 x.addPoints()
                 print(x.channelPoints)
@@ -84,6 +86,7 @@ while True:
         print('i am waiting', randomTime)
         time.sleep(randomTime)
         clickPoints(location)
+
         print(location)
     else:
         print('None')
